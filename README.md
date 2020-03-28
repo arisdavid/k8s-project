@@ -23,23 +23,19 @@ Ensure you're inside the Kubernetes environment as this is where the images will
 ``` eval $(minikube docker-env) ```
 
 Optional: for interacting with the cluster it would be handy to have k9s installed - https://github.com/derailed/k9s. It's an interactive UI tool for interacting with Kubernetes cluster. 
+
 ## Install Helm
 Helm is a tool for managing Kubernetes charts. Charts are packages of pre-configured Kubernetes resources.
 To install Helm, refer to the Helm install guide and ensure that the helm binary is in the PATH of your shell.
 
-## Add Repo
+### Add Repo
 Add bitnami charts into the repo
 
 ``` 
 helm repo add bitnami https://charts.bitnami.com/bitnami 
 ```
 
-## Deploy kafka
-
-```
-helm install k8-kafka bitnami/kafka --namespace=k8demo \
---set persistence.enabled=false --set zookeeper.persistence.enabled=false
-```
+## Build the Producer and Consumer Docker Images
 
 ### Build the producer-app docker image (inside minikube cluster)
  
@@ -51,6 +47,14 @@ docker build -t producer-app:latest -f ./producer/Dockerfile producer
 
 ```
 docker build -t consumer-app:latest -f ./consumer/Dockerfile consumer
+```
+
+## Minikube Cluster
+### Deploy kafka
+
+```
+helm install k8-kafka bitnami/kafka --namespace=k8demo \
+--set persistence.enabled=false --set zookeeper.persistence.enabled=false
 ```
 
 ### Publish a message into a kafka topic
