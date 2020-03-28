@@ -9,7 +9,9 @@ Optional: for interacting with the cluster it would be handy to have k9s install
 ## Local Development
 
 For local development and testing setup a Kubernetes cluster using minikube. 
-The minikube cluster is where the python apps, redis and kafka server will be deployed. 
+The minikube cluster is where the python apps, redis and kafka server will be deployed.
+
+https://kubernetes.io/docs/setup/learning-environment/minikube/ 
 
 Launch a minikube cluster using the following command:
 
