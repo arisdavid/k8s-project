@@ -1,4 +1,4 @@
-# Kubernetes Demo Project (Python Producer, Python Producer, Kafka)
+# Kubernetes Demo Project (Python Producer, Consumer and Kafka)
 
 ## Introduction
 This is mini-project demonstrating how to deploy and run a kafka server and python applications inside a Kubernetes cluster. 
