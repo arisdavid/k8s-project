@@ -1,10 +1,8 @@
 # Kubernetes Demo Project (Python Producer, Consumer and Kafka)
 
 ## Introduction
-This is mini-project demonstrating how to deploy and run a kafka server and python applications inside a Kubernetes cluster. 
-Producer.py publishes a message into a kafka topic while consumer.py listens and prints these messages. 
+Demo project demonstrating how to deploy a Kafka server, python producer and consumer apps inside a minkube cluster.
 
-Optional: for interacting with the cluster it would be handy to have k9s installed - https://github.com/derailed/k9s. It's an interactive UI tool for interacting with Kubernetes cluster. 
 
 ## Local Development
 
@@ -24,6 +22,7 @@ Create a namespace within the cluster called k8demo
 Ensure you're inside the Kubernetes environment as this is where the images will be built
 ``` eval $(minikube docker-env) ```
 
+Optional: for interacting with the cluster it would be handy to have k9s installed - https://github.com/derailed/k9s. It's an interactive UI tool for interacting with Kubernetes cluster. 
 ## Install Helm
 Helm is a tool for managing Kubernetes charts. Charts are packages of pre-configured Kubernetes resources.
 To install Helm, refer to the Helm install guide and ensure that the helm binary is in the PATH of your shell.
