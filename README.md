@@ -1,7 +1,7 @@
 # Kubernetes Demo Project (Python Producer, Consumer and Kafka)
 
 ## Introduction
-Demo project demonstrating how to deploy a Kafka server, python producer and consumer apps inside a minkube cluster.
+Demo project demonstrating how to deploy a Kafka server, python producer and consumer apps inside a kubernetes cluster.
 
 
 ## Local Development
