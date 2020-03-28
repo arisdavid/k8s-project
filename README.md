@@ -57,7 +57,7 @@ docker build -t consumer-app:latest -f ./consumer/Dockerfile consumer
 ### Publish a message into a kafka topic
 ``` 
 kubectl run producer --rm --tty -i --env="KAFKA_HOST=k8-kafka.k8demo.svc.cluster.local:9092" \
---image producer-app:latest --image-pull-policy Never --restart Never \ 
+--image producer-app:latest --image-pull-policy Never --restart Never \
 --namespace k8demo --command -- python -u /producer_app.py <message> <topic>
  ```
 ### Read messages from a specific topic
@@ -67,7 +67,8 @@ kubectl run consumer --rm --tty -i --env="KAFKA_HOST=k8-kafka.k8demo.svc.cluster
 --namespace k8demo --command -- python -u /consumer_app.py <topic>
 ```
 
-
+### Screenshots
+![Image of K9s](https://github.com/arisdavid/k8s-project/demo/k9s.png)
 
 
 
