@@ -35,4 +35,4 @@ workflows:
   version: 2
   syntax-quality:
     jobs:
-      - pep8-syntax-check
+      - syntax-check
