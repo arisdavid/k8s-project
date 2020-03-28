@@ -9,7 +9,7 @@ Optional: for interacting with the cluster it would be handy to have k9s install
 ## Local Development
 
 For local development and testing setup a Kubernetes cluster using minikube. 
-The minikube cluster will be used to deploy the python, redis and kafka servers. 
+The minikube cluster is where the python apps, redis and kafka server will be deployed. 
 
 Launch a minikube cluster using the following command:
 
@@ -36,7 +36,8 @@ helm repo add bitnami https://charts.bitnami.com/bitnami
 ## Deploy kafka
 
 ```
-helm install k8-kafka bitnami/kafka --namespace=k8demo --set persistence.enabled=false --set zookeeper.persistence.enabled=false
+helm install k8-kafka bitnami/kafka --namespace=k8demo \
+--set persistence.enabled=false --set zookeeper.persistence.enabled=false
 ```
 
 ### Build the producer-app docker image (inside minikube cluster)
@@ -53,24 +54,16 @@ docker build -t consumer-app:latest -f ./consumer/Dockerfile consumer
 
 ### Publish a message into a kafka topic
 ``` 
-kubectl run producer --rm --tty -i --env="KAFKA_HOST=k8-kafka.k8demo.svc.cluster.local:9092" --image producer-app:latest --image-pull-policy Never --restart Never --namespace k8demo --command \
--- python -u /producer_app.py <message> <topic>
+kubectl run producer --rm --tty -i --env="KAFKA_HOST=k8-kafka.k8demo.svc.cluster.local:9092" \
+--image producer-app:latest --image-pull-policy Never --restart Never \ 
+--namespace k8demo --command -- python -u /producer_app.py <message> <topic>
  ```
 ### Read messages from a specific topic
 ```
-kubectl run consumer --rm --tty -i --env="KAFKA_HOST=k8-kafka.k8demo.svc.cluster.local:9092" --image consumer-app:latest --image-pull-policy Never --restart Never --namespace k8demo --command \
--- python -u /consumer_app.py <topic>
+kubectl run consumer --rm --tty -i --env="KAFKA_HOST=k8-kafka.k8demo.svc.cluster.local:9092" \ 
+--image consumer-app:latest --image-pull-policy Never --restart Never \ 
+--namespace k8demo --command -- python -u /consumer_app.py <topic>
 ```
-
-
-
-
-
-
-
-
-
-
 
 
 
