@@ -68,7 +68,7 @@ kubectl run consumer --rm --tty -i --env="KAFKA_HOST=k8-kafka.k8demo.svc.cluster
 ```
 
 ### Screenshots
-![Image of K9s](https://github.com/arisdavid/k8s-project/demo/k9s.png)
+![Image of K9s](https://github.com/arisdavid/k8s-project/blob/master/demo/k9s.png){:class="img-responsive"}
 
 
 
