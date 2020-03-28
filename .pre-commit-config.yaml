@@ -1,0 +1,25 @@
+repos:
+
+  # Isort
+- repo: https://github.com/pre-commit/mirrors-isort
+  rev: master 
+  hooks:
+  - id: isort
+    args: [-m3, --trailing-comma]
+
+  # Black
+- repo: https://github.com/ambv/black
+  rev: stable
+  hooks:
+    - id: black
+      language_version: python3.7
+      types: [file, python]
+
+  # Flake8
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v2.4.0
+  hooks:
+    - id: flake8
+      language_version: python3.7
+      args: [--max-line-length=100,--extend-ignore=E203]
+
