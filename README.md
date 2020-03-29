@@ -13,11 +13,21 @@ https://kubernetes.io/docs/setup/learning-environment/minikube/
 
 Launch a minikube cluster using the following command:
 
-``` minikube start ```
+``` 
+minikube start 
+```
 
 Create a namespace within the cluster called k8demo
 
-``` minikube create namespace k8demo ```
+``` 
+minikube create namespace k8demo 
+```
+
+Minikube defaults to default namespace. Set namespace context to k8demo
+
+```
+kubectl config set-context $(kubectl config current-context) --namespace=k8demo
+```
 
 Ensure you're inside the Kubernetes environment as this is where the images will be built
 ``` eval $(minikube docker-env) ```
