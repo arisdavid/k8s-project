@@ -48,9 +48,15 @@ helm repo add bitnami https://charts.bitnami.com/bitnami
 ## Build the Producer and Consumer Docker Images
 
 ### Build the producer-app docker image (inside minikube cluster)
- 
+
+Producer1: Ephemeral
 ```
 docker build -t producer-app:latest -f ./producer/Dockerfile producer
+```
+
+Producer2: Infinite Loop
+```
+docker build --no-cache -t contacts-producer-app:latest -f ./random_producer/Dockerfile random_producer
 ```
 
 ### Build the consumer-app docker image (inside minikube cluster)
@@ -67,18 +73,27 @@ helm install k8-kafka bitnami/kafka --namespace=k8demo \
 --set persistence.enabled=false --set zookeeper.persistence.enabled=false
 ```
 
-### Publish a message into a kafka topic
-``` 
-kubectl run producer --rm --tty -i --env="KAFKA_HOST=k8-kafka.k8demo.svc.cluster.local:9092" \
---image producer-app:latest --image-pull-policy Never --restart Never \
---namespace k8demo --command -- python -u /producer_app.py <message> <topic>
- ```
 ### Read messages from a specific topic
 ```
 kubectl run consumer --rm --tty -i --env="KAFKA_HOST=k8-kafka.k8demo.svc.cluster.local:9092" \ 
 --image consumer-app:latest --image-pull-policy Never --restart Never \ 
 --namespace k8demo --command -- python -u /consumer_app.py <topic>
 ```
+
+### Publish a message into a kafka topic (Producer1)
+``` 
+kubectl run producer --rm --tty -i --env="KAFKA_HOST=k8-kafka.k8demo.svc.cluster.local:9092" \
+--image producer-app:latest --image-pull-policy Never --restart Never \
+--namespace k8demo --command -- python -u /producer_app.py <message> <topic>
+ ```
+
+### Generate random data to publish into a kafka topic (Producer2)
+``` 
+kubectl run producer --rm --tty -i --env="KAFKA_HOST=k8-kafka.k8demo.svc.cluster.local:9092" \
+--image contacts-producer-app:latest --image-pull-policy Never --restart Never \
+--namespace k8demo --command -- python -u /producer_app.py <topic>
+ ```
+
 
 ### Screenshots
 ![Image of K9s](https://github.com/arisdavid/k8s-project/blob/master/demo/k9s.png)
