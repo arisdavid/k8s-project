@@ -3,6 +3,8 @@
 ## Introduction
 Demo project demonstrating how to deploy a Kafka server, python producer and consumer apps inside a kubernetes cluster.
 
+#### Screenshots
+![Image of K9s](https://github.com/arisdavid/k8s-project/blob/master/demo/k9s.png)
 
 ## Local Development
 
@@ -94,9 +96,6 @@ kubectl run producer --rm --tty -i --env="KAFKA_HOST=k8-kafka.k8demo.svc.cluster
 --namespace k8demo --command -- python -u /producer_app.py <topic>
  ```
 
-
-### Screenshots
-![Image of K9s](https://github.com/arisdavid/k8s-project/blob/master/demo/k9s.png)
 
 
 
