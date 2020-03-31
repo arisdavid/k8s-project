@@ -58,7 +58,7 @@ docker build -t producer-app:latest -f ./producer/Dockerfile producer
 
 Producer2: Infinite Loop
 ```
-docker build --no-cache -t contacts-producer-app:latest -f ./random_producer/Dockerfile random_producer
+docker build -t contacts-producer-app:latest -f ./random_producer/Dockerfile random_producer
 ```
 
 ### Build the consumer-app docker image (inside minikube cluster)
