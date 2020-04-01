@@ -15,7 +15,7 @@ client = KafkaClient(hosts=os.getenv("KAFKA_HOST"))
 def publish_random_records(topic):
 
     topic = client.topics[topic]
-    with topic.get_producer() as producer:
+    with topic.get_sync_producer() as producer:
         while True:
             f = faker.Faker()
             contact = dict(
