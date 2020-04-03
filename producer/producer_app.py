@@ -12,9 +12,8 @@ client = KafkaClient(hosts=os.getenv("KAFKA_HOST"))
 def publish_message(message, topic):
     topic = client.topics[topic]
     with topic.get_sync_producer() as producer:
-        logging.info(f"Publishing message {message} to {topic}.")
         producer.produce(message.encode())
-        logging.info(f"Message published.")
+        logging.info(f"Message published to {message} to {topic}.")
 
 
 if __name__ == "__main__":
